@@ -4,9 +4,9 @@ from __future__ import annotations
 
 import logging
 from pathlib import Path
-from typing import Optional
 
 _LOGGER_NAME = "trading_bot"
+_REPO_ROOT = Path(__file__).resolve().parent.parent
 
 
 def configure_logging(log_file: str = "trading_bot.log") -> logging.Logger:
@@ -22,7 +22,7 @@ def configure_logging(log_file: str = "trading_bot.log") -> logging.Logger:
     if logger.handlers:
         return logger
 
-    log_path = Path(log_file).resolve()
+    log_path = _REPO_ROOT / log_file
     log_path.parent.mkdir(parents=True, exist_ok=True)
 
     console_handler = logging.StreamHandler()
